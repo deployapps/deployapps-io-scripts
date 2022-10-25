@@ -19,3 +19,11 @@ bash <(curl -Ls https://raw.githubusercontent.com/deployapps/deployapps-io-scrip
 bash <(curl -Ls https://raw.githubusercontent.com/deployapps/deployapps-io-scripts/main/Ubuntu/22.04/Ubuntu-22-04-Setup-LEMP-Server-And-Install-Laravel-9x.sh)
 
 ```
+
+## Ubuntu 22.04 Setup SPA Application Server
+
+```bash
+
+bash <(curl -Ls https://raw.githubusercontent.com/deployapps/deployapps-io-scripts/main/Ubuntu/22.04/Ubuntu-22-04-Setup-SPA-Application.sh)
+
+```
