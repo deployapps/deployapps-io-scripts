@@ -20,10 +20,35 @@ bash <(curl -Ls https://raw.githubusercontent.com/deployapps/deployapps-io-scrip
 
 ```
 
-## Ubuntu 22.04 Setup SPA Application Server
+## Ubuntu 22.04 Setup Vue SPA Application Server
 
 ```bash
 
-bash <(curl -Ls https://raw.githubusercontent.com/deployapps/deployapps-io-scripts/main/Ubuntu/22.04/Ubuntu-22-04-Setup-SPA-Application.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/deployapps/deployapps-io-scripts/main/Ubuntu/22.04/Ubuntu-22-04-Setup-Vue-SPA-Application.sh)
+
+```
+
+
+## Ubuntu 22.04 Setup Quasar SPA Application Server
+
+```bash
+
+bash <(curl -Ls https://raw.githubusercontent.com/deployapps/deployapps-io-scripts/main/Ubuntu/22.04/Ubuntu-22-04-Setup-Quasar-SPA-Application.sh)
+
+```
+
+## Ubuntu 22.04 Setup React SPA Application Server
+
+```bash
+
+bash <(curl -Ls https://raw.githubusercontent.com/deployapps/deployapps-io-scripts/main/Ubuntu/22.04/Ubuntu-22-04-Setup-React-SPA-Application.sh)
+
+```
+
+## Ubuntu 22.04 Setup Svelte SPA Application Server
+
+```bash
+
+bash <(curl -Ls https://raw.githubusercontent.com/deployapps/deployapps-io-scripts/main/Ubuntu/22.04/Ubuntu-22-04-Setup-Svelte-SPA-Application.sh)
 
 ```
