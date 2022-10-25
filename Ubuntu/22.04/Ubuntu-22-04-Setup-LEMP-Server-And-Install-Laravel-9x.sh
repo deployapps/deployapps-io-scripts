@@ -170,3 +170,9 @@ EOL
 
 systemctl restart php8.1-fpm.service
 systemctl restart nginx.service
+
+
+# Enable Free SSL
+
+echo "To Enable Free SSL you can run following command"
+echo "sudo certbot --nginx -d ${PRIMARY_DOMAIN} -d www.${PRIMARY_DOMAIN}"
