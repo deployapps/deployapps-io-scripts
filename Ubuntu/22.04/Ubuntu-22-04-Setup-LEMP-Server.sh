@@ -5,23 +5,23 @@ if [ "$(id -nu)" != "root" ]; then
   exit 1
 fi
 # Configuration BEGIN
-SWAP_MEMORY_SIZE=2G
-DB_NAME=AppDB
-DB_USERNAME=appdbu
-DB_PASSWORD=$(head -c 10 /dev/random | md5sum | head -c 15)
-DB_HOST="localhost"
+export SWAP_MEMORY_SIZE=2G
+export DB_DATABASE=AppDB
+export DB_USERNAME=appdbu
+export DB_PASSWORD=$(head -c 10 /dev/random | md5sum | head -c 15)
+export DB_HOST="localhost"
 
-PHP_VERSION="php8.1"
-NODEJS_VERSION="16.x"
+export PHP_VERSION="php8.1"
+export NODEJS_VERSION="16.x"
 
-PRIMARY_DOMAIN="example.org"
+export PRIMARY_DOMAIN="example.org"
 
 # Config END
 
 # Get Input From User
 read -e -p "Enter SWAP Memory:" -i "2G" SWAP_MEMORY_SIZE
 
-read -e -p "Enter DataBase Name:" -i "$DB_NAME" DB_NAME
+read -e -p "Enter DataBase Name:" -i "$DB_DATABASE" DB_DATABASE
 read -e -p "Enter DB Username:" -i "$DB_USERNAME" DB_USERNAME
 read -e -p "Enter DB Password:" -i "$DB_PASSWORD" DB_PASSWORD
 
@@ -68,14 +68,14 @@ systemctl enable mysql.service
 
 # Create Mysql DB and User
 echo "#Database Credentials" | tee -a ~/deployapps_io_credentials
-echo "DB_NAME=${DB_NAME}" | tee -a ~/deployapps_io_credentials
+echo "DB_DATABASE=${DB_DATABASE}" | tee -a ~/deployapps_io_credentials
 echo "DB_USERNAME=${DB_USERNAME}" | tee -a ~/deployapps_io_credentials
 echo "DB_PASSWORD=${DB_PASSWORD}" | tee -a ~/deployapps_io_credentials
 echo "DB_HOST=${DB_HOST}" | tee -a ~/deployapps_io_credentials
 
-mysql -e "CREATE DATABASE ${DB_NAME} /*\!40100 DEFAULT CHARACTER SET utf8 */;"
+mysql -e "CREATE DATABASE ${DB_DATABASE} /*\!40100 DEFAULT CHARACTER SET utf8 */;"
 mysql -e "CREATE USER \`${DB_USERNAME}\`@\`${DB_HOST}\` IDENTIFIED BY '${DB_PASSWORD}';"
-mysql -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO \`${DB_USERNAME}\`@\`${DB_HOST}\`;"
+mysql -e "GRANT ALL PRIVILEGES ON ${DB_DATABASE}.* TO \`${DB_USERNAME}\`@\`${DB_HOST}\`;"
 mysql -e "FLUSH PRIVILEGES;"
 
 # Install NodeJS
