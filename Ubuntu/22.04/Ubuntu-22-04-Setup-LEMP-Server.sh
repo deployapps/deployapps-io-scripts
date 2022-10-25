@@ -96,3 +96,8 @@ chmod +x /usr/local/bin/composer
 
 # Install Certbot
 apt-get install -y certbot python3-certbot-nginx
+
+# Restart Services
+
+systemctl restart php8.1-fpm.service
+systemctl restart nginx.service
