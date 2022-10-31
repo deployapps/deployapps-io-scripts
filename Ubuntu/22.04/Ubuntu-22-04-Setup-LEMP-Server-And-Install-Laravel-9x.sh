@@ -85,10 +85,7 @@ apt-get install -y nodejs
 # PHP
 add-apt-repository --yes ppa:ondrej/php
 apt update -y
-apt install -y ${PHP_VERSION}
-apt install -y ${PHP_VERSION}-fpm
-apt install -y ${PHP_VERSION}-bcmath ${PHP_VERSION}-curl ${PHP_VERSION}-gd ${PHP_VERSION}-intl ${PHP_VERSION}-mbstring ${PHP_VERSION}-mysql ${PHP_VERSION}-xml ${PHP_VERSION}-zip ${PHP_VERSION}-redis
-
+apt install -y ${PHP_VERSION}-fpm ${PHP_VERSION}-bcmath ${PHP_VERSION}-curl ${PHP_VERSION}-gd ${PHP_VERSION}-intl ${PHP_VERSION}-mbstring ${PHP_VERSION}-mysql ${PHP_VERSION}-xml ${PHP_VERSION}-zip ${PHP_VERSION}-redis
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
