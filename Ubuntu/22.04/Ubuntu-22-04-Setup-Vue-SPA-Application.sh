@@ -1,4 +1,5 @@
 #!/bin/bash
+export DEBIAN_FRONTEND=noninteractive
 #Check Root User or Not
 if [ "$(id -nu)" != "root" ]; then
   echo -e '\033[31m Run this script as root user, you can switch to root user by running command sudo su \033[0m '
