@@ -16,6 +16,8 @@ export PHP_VERSION="php8.1"
 export NODEJS_VERSION="16.x"
 
 export PRIMARY_DOMAIN="example.org"
+export DEFAULT_PRIMARY_DOMAIN="laravel"
+export NGINX_SERVER_NAME="_"
 
 # Config END
 
@@ -27,6 +29,14 @@ read -e -p "Enter DB Username:" -i "$DB_USERNAME" DB_USERNAME
 read -e -p "Enter DB Password:" -i "$DB_PASSWORD" DB_PASSWORD
 
 read -e -p "Enter Domain Name:" -i "$PRIMARY_DOMAIN" PRIMARY_DOMAIN
+
+
+if [ -z "$PRIMARY_DOMAIN" ]; then
+  NGINX_SERVER_NAME="_"
+  PRIMARY_DOMAIN=$DEFAULT_PRIMARY_DOMAIN
+else
+  NGINX_SERVER_NAME=$PRIMARY_DOMAIN
+fi
 
 # Update Repository
 apt update -y
@@ -136,7 +146,7 @@ cat >"/etc/nginx/conf.d/${PRIMARY_DOMAIN}.conf" <<EOL
 server {
     listen 80;
     listen [::]:80;
-    server_name ${PRIMARY_DOMAIN};
+    server_name ${NGINX_SERVER_NAME};
     root ${APPLICATION_WEB_ROOT_DIRECTORY};
 
     add_header X-Frame-Options "SAMEORIGIN";
@@ -171,8 +181,7 @@ EOL
 systemctl restart php8.1-fpm.service
 systemctl restart nginx.service
 
-
 # Enable Free SSL
 
 echo "To Enable Free SSL you can run following command"
-echo "sudo certbot --nginx -d ${PRIMARY_DOMAIN} -d www.${PRIMARY_DOMAIN}"
+echo "sudo certbot --nginx -d ${PRIMARY_DOMAIN}"

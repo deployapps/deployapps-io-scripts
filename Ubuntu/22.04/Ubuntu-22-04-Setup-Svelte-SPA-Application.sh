@@ -8,7 +8,10 @@ fi
 # Configuration BEGIN
 export SWAP_MEMORY_SIZE=2G
 export NODEJS_VERSION="16.x"
+
 export PRIMARY_DOMAIN="example.org"
+export DEFAULT_PRIMARY_DOMAIN="svelte"
+export NGINX_SERVER_NAME="_"
 
 # Config END
 
@@ -17,6 +20,12 @@ read -e -p "Enter SWAP Memory:" -i "2G" SWAP_MEMORY_SIZE
 
 read -e -p "Enter Domain Name:" -i "$PRIMARY_DOMAIN" PRIMARY_DOMAIN
 
+if [ -z "$PRIMARY_DOMAIN" ]; then
+  NGINX_SERVER_NAME="_"
+  PRIMARY_DOMAIN=$DEFAULT_PRIMARY_DOMAIN
+else
+  NGINX_SERVER_NAME=$PRIMARY_DOMAIN
+fi
 # Update Repository
 apt update -y
 export LC_ALL=en_US.UTF-8

@@ -8,14 +8,23 @@ fi
 # Configuration BEGIN
 export SWAP_MEMORY_SIZE=2G
 export NODEJS_VERSION="16.x"
-export PRIMARY_DOMAIN="example.org"
 
+export PRIMARY_DOMAIN="example.org"
+export DEFAULT_PRIMARY_DOMAIN="quasar"
+export NGINX_SERVER_NAME="_"
 # Config END
 
 # Get Input From User
 read -e -p "Enter SWAP Memory:" -i "2G" SWAP_MEMORY_SIZE
 
 read -e -p "Enter Domain Name:" -i "$PRIMARY_DOMAIN" PRIMARY_DOMAIN
+
+if [ -z "$PRIMARY_DOMAIN" ]; then
+  NGINX_SERVER_NAME="_"
+  PRIMARY_DOMAIN=$DEFAULT_PRIMARY_DOMAIN
+else
+  NGINX_SERVER_NAME=$PRIMARY_DOMAIN
+fi
 
 # Update Repository
 apt update -y
@@ -68,7 +77,7 @@ cat >"/etc/nginx/conf.d/${PRIMARY_DOMAIN}.conf" <<EOL
 server {
     listen 80;
     listen [::]:80;
-    server_name ${PRIMARY_DOMAIN};
+    server_name ${NGINX_SERVER_NAME};
     root ${APPLICATION_WEB_ROOT_DIRECTORY};
 
     add_header X-Frame-Options "SAMEORIGIN";
