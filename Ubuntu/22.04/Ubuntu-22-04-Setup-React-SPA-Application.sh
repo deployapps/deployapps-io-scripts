@@ -38,6 +38,8 @@ fi
 apt-get install software-properties-common vim htop tree curl zip unzip git -y
 
 # Install Nginx
+add-apt-repository --yes ppa:ondrej/nginx
+apt update -y
 apt-get install -y nginx
 ufw allow 'Nginx Full'
 systemctl restart nginx.service
