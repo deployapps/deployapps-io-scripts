@@ -7,7 +7,7 @@ if [ "$(id -nu)" != "root" ]; then
 fi
 # Configuration BEGIN
 export SWAP_MEMORY_SIZE=2G
-export NODEJS_VERSION="16.x"
+export NODEJS_VERSION="18.x"
 
 export PRIMARY_DOMAIN="example.org"
 export DEFAULT_PRIMARY_DOMAIN="quasar"
