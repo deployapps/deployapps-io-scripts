@@ -13,7 +13,7 @@ export DB_PASSWORD=$(head -c 10 /dev/random | md5sum | head -c 15)
 export DB_HOST="localhost"
 
 export PHP_VERSION="php8.2"
-export NODEJS_VERSION="18.x"
+export NODEJS_VERSION="20.x"
 
 export PRIMARY_DOMAIN="example.org"
 export DEFAULT_PRIMARY_DOMAIN="laravel"
